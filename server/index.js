@@ -1,13 +1,14 @@
-const express = require("express");
+import express from 'express'
+import { json } from 'body-parser'
+import transactionRouter from './transactions/trans.router.js'
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3333;
 
 const app = express();
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
-  });
+app.use(json())
+app.use('/api', transactionRouter)
   
-  app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
   });
