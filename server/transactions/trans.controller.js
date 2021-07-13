@@ -4,7 +4,7 @@ export const getAllTransactions = (req,res) => {
     var data = [];
     Transactions.forEach((value,key,map) => {
         value.forEach(element => {
-            data.push({[key]:element});
+            data.push({ "name":key, "amount":element });
         });
     });
     res.status(200).json(data).end();
