@@ -3,10 +3,10 @@ import { getAllTransactions, addTransaction, compressTransactions } from './tran
 
 const router = Router()
 
-router.get('/', getAllTransactions)
+router.get('/transactions/', getAllTransactions)
 
-router.post('/', addTransaction)
+router.post('/transactions/', addTransaction)
 
-router.put('/', compressTransactions)
+router.put('/transactions/', compressTransactions)
 
 export default router;
