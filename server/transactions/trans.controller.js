@@ -11,8 +11,8 @@ export const getAllTransactions = (req,res) => {
 }
 
 export const addTransaction = (req,res) => {
-    const counterparty = req.body.counterparty;
-    const amount = req.body.amount;
+    var counterparty = req.body.counterparty;
+    var amount = req.body.amount;
 
     if(Transactions.get(counterparty) === undefined){
         Transactions.set(counterparty, [amount]);
@@ -21,5 +21,18 @@ export const addTransaction = (req,res) => {
         Transactions.get(counterparty).push(amount);
     }
 
+    res.status(200).end();
+}
+
+export const compressTransactions = (req,res) => {
+    Transactions.forEach((value,key,map) => {
+        var tempVal = value
+                        .map(Number)
+                        .reduce((accumulator, current) => accumulator + current
+                        ,0);
+        console.log(tempVal);
+        Transactions.set(key, [tempVal.toString()]);
+    });
+    console.log(Transactions);
     res.status(200).end();
 }
