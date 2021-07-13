@@ -28,11 +28,8 @@ export const compressTransactions = (req,res) => {
     Transactions.forEach((value,key,map) => {
         var tempVal = value
                         .map(Number)
-                        .reduce((accumulator, current) => accumulator + current
-                        ,0);
-        console.log(tempVal);
+                        .reduce((accumulator, current) => accumulator + current,0);
         Transactions.set(key, [tempVal.toString()]);
     });
-    console.log(Transactions);
     res.status(200).end();
 }
